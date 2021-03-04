@@ -212,6 +212,7 @@ export default function startClient(id: string, wsUrl: string) {
     setTimeout(publishFn, INTERVAL)
 
     // Print to console statistics
+    let i=0;
     setInterval(() => {
         let totalIn = 0
         let totalOut = 0
@@ -228,7 +229,7 @@ export default function startClient(id: string, wsUrl: string) {
             conn.resetCounters()
         })
         const memoryUsage = process.memoryUsage()
-        console.info(`Total ${formatRate(totalIn)} / ${formatRate(totalOut)} kb/s (${formatRate(totalFailed)}, ${formatRate(totalBufferedAmount)}, ${memoryUsage.heapUsed} / ${memoryUsage.heapTotal})\n`)
+        console.info(`${i++}# Total ${formatRate(totalIn)} / ${formatRate(totalOut)} kb/s (${formatRate(totalFailed)}, ${formatRate(totalBufferedAmount)}, ${memoryUsage.heapUsed} / ${memoryUsage.heapTotal})\n`)
     }, 1000)
 }
 
